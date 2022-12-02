@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslationService } from '../api/translation.service';
 
 @Component({
   selector: 'app-tab1',
@@ -10,10 +11,13 @@ export class Tab1Page {
   input:string = ''
   output:string = ''
 
-  constructor() {}
+  constructor(private api: TranslationService) {}
 
   btnTranlateClicked() {
-    this.output = this.input
+    //this.output = this.input
+    this.api.getTranslation(this.input).subscribe((data:any) => {
+      this.output = data.responseData.translatedText
+    })
   }
 
 }
