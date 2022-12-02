@@ -11,7 +11,17 @@ export class HistoryService {
 
   historyArray: HistoryRecord[] = []
 
-  constructor() { }
+  constructor() {
+    this.loadState();
+  }
+
+
+  async loadState () {
+    const { value } = await Preferences.get({ key: 'history' });
+    if(value){
+      this.historyArray = JSON.parse(value)
+    }
+  }
 
   async saveHistory(record: HistoryRecord) {
     console.log(record)
