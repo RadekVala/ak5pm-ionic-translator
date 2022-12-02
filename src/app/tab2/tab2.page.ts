@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HistoryService } from '../api/history.service';
+import { HistoryRecord } from '../models/history-record';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  records: HistoryRecord[] = []
 
+  constructor(private historyService: HistoryService) {}
+
+  ionViewDidEnter() {
+    this.records = this.historyService.historyArray
+  }
 }
