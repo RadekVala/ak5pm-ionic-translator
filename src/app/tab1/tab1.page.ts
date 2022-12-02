@@ -7,6 +7,13 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
+  input:string = ''
+  output:string = ''
+
   constructor() {}
+
+  btnTranlateClicked() {
+    this.output = this.input
+  }
 
 }
