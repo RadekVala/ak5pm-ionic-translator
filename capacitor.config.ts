@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'cz.utb.fai.translatorapp',
   appName: 'TranslatorApp',
   webDir: 'www',
   bundledWebRuntime: false
