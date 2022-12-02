@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { TranslationService } from '../api/translation.service';
 
 import { LoadingController } from '@ionic/angular';
+import { HistoryRecord } from '../models/history-record';
+import { HistoryService } from '../api/history.service';
 
 @Component({
   selector: 'app-tab1',
@@ -16,6 +18,7 @@ export class Tab1Page {
 
   constructor(
     private api: TranslationService,
+    private historyService: HistoryService,
     private loadingCtrl: LoadingController
   ) {}
 
@@ -24,6 +27,9 @@ export class Tab1Page {
     this.showLoading()
     this.api.getTranslation(this.input).subscribe((data:any) => {
       this.output = data.responseData.translatedText
+      let record = new HistoryRecord(this.input, this.output)
+      console.log(record.input);
+      this.historyService.saveHistory(record)
       this.loading.dismiss();
     })
   }
